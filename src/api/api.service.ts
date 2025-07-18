@@ -3,13 +3,11 @@ type RequestBody = undefined | Record<string, unknown> | FormData;
 
 class ApiService {
   private baseUrl: string;
-  // private username: string;
-  // private password: string;
+  private apiKey: string;
 
   constructor() {
     this.baseUrl = import.meta.env.VITE_BASE_URI || "";
-    // this.username = import.meta.env.VITE_API_USERNAME || "";
-    // this.password = import.meta.env.VITE_API_PASSWORD || "";
+    this.apiKey = import.meta.env.VITE_API_KEY || "";
   }
 
   private async request<T>(
@@ -27,7 +25,7 @@ class ApiService {
       method,
       headers: {
         accept: "application/json",
-        "x-api-key": "FYIuWWtQ7bCuqtbA7slnu9tpKnewyU7JApmMiGO8",
+        "x-api-key": this.apiKey,
         ...headers,
       },
     };
